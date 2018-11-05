@@ -288,5 +288,5 @@ if __name__ == '__main__':
 	#scan_match()
 	test_SinSampler()
 	#p = [1,2,3,2,1,2,3]
-	#print find_ideal(p)
+	#print(find_ideal(p))
 	test_PairSampler()
