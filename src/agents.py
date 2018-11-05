@@ -2,8 +2,7 @@ from lib import *
 
 class Agent:
 
-	def __init__(self, model, 
-		batch_size=32, discount_factor=0.95):
+	def __init__(self, model, batch_size=32, discount_factor=0.95):
 
 		self.model = model
 		self.batch_size = batch_size
