@@ -131,8 +131,6 @@ class PairSampler(Sampler):
 		return np.array(inputs).T, 'forecast_horizon='+str(forecast_horizon)
 
 
-
-
 class SinSampler(Sampler):
 
 	def __init__(self, game, 
