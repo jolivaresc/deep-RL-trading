@@ -6,7 +6,7 @@ from sampler import *
 from emulator import *
 from simulators import *
 from visualizer import *
-
+from contextlib import redirect_stdout
 
 def get_model(model_type, env, learning_rate, fld_load):
 
@@ -93,6 +93,9 @@ def main():
 	env = Market(sampler, window_state, open_cost)
 	model, print_t = get_model(model_type, env, learning_rate, fld_load)
 	model.model.summary()
+	with open("./modelsummary.txt","a") as fd:
+		with redirect_stdout(fd):
+			model.model.summary()
 	#return
 
 	agent = Agent(model, discount_factor=discount_factor, batch_size=batch_size)
