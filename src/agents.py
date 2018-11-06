@@ -1,4 +1,4 @@
-cñsfrom lib import *
+from lib import *
 
 class Agent:
 

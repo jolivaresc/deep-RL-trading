@@ -6,6 +6,7 @@ from sampler import *
 from emulator import *
 from simulators import *
 from visualizer import *
+from datetime import datetime
 from contextlib import redirect_stdout
 
 def get_model(model_type, env, learning_rate, fld_load):
@@ -18,7 +19,7 @@ def get_model(model_type, env, learning_rate, fld_load):
 		layers = 5
 		hidden_size = [m]*layers
 		model = QModelMLP(env.state_shape, env.n_action)
-		model.build_model(hidden_size, learning_rate=learning_rate, activation='tanh')
+		model.build_model([120,120,50,40,20,10], learning_rate=learning_rate, activation='tanh')
 	
 	elif model_type == 'conv':
 
@@ -71,7 +72,7 @@ def main():
 	it is recommended to generate database usng sampler.py before run main
 	"""
 
-	model_type = 'MLP'
+	model_type = 'ConvRNN'
 	exploration_init = 1.
 	fld_load = None
 	n_episode_training = 1000
@@ -93,9 +94,12 @@ def main():
 	env = Market(sampler, window_state, open_cost)
 	model, print_t = get_model(model_type, env, learning_rate, fld_load)
 	model.model.summary()
+	#path_summary = f"./modelsummary{datetime.now()}.txt".replace(" ","")
 	with open("./modelsummary.txt","a") as fd:
 		with redirect_stdout(fd):
+			model.model.input
 			model.model.summary()
+			
 	#return
 
 	agent = Agent(model, discount_factor=discount_factor, batch_size=batch_size)
