@@ -72,7 +72,7 @@ def main():
 	it is recommended to generate database usng sampler.py before run main
 	"""
 
-	model_type = 'ConvRNN'
+	model_type = 'MLP'
 	exploration_init = 1.
 	fld_load = None
 	n_episode_training = 1000
